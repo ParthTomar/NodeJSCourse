@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const http = require('http');
 const bodyParser = require('body-parser');
 
+const dishRouter = require('./routes/dishRouter');
+
 const hostname = 'localhost';
 const port = 3000;
 
@@ -10,29 +12,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-app.all('/dishes', (req,res,next)=>{
-    res.statusCode = 200;
-    res.setHeader('content-Type', 'text/plain');
-    // res.end('<html><body><h1>This is an express server</h1></body></html>');
-    next(); //processes next item related to dishes: calls app.get-> dishes [based on req.method type]
-});
-
-app.get('/dishes', (req,res,next)=>{
-    res.end('Will send all the dishes to you!');
-});
-
-app.post('/dishes', (req,res,next)=>{
-    res.end('Will add the dish: ' + req.body.name + ' with details: ' + req.body.description);
-});
-
-app.put('/dishes', (req,res,next)=>{
-    res.statusCode = 403;
-    res.end('PUT operation not supported on /dishes');
-});
-
-app.delete('/dishes', (req,res,next)=>{
-    res.end('Deleting all the dishes!');
-});
+app.use('/dishes', dishRouter);
 
 app.get('/dishes/:dishId', (req,res,next)=>{
     res.end('Will send details of the dish: ' + req.params.dishId + ' to you!');
