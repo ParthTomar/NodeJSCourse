@@ -1,0 +1,16 @@
+{
+  "name": "node_mongo",
+  "version": "1.0.0",
+  "description": "MOngo db with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "Parth Tomar",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "mongodb": "^2.2.33"
+  }
+}
